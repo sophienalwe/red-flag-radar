@@ -4,9 +4,9 @@ const cors = require("cors");
 const app = express();
 const PORT = 5000;
 
-// CORS config - update this with your actual frontend Render URL!
+
 const corsOptions = {
-  origin: "https://red-flag-radar.onrender.com",  // 👈 use your deployed frontend URL
+  origin: "https://red-flag-radar.onrender.com", 
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
 };
