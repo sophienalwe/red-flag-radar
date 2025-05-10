@@ -11,7 +11,7 @@ export default function App() {
     setVerdict(null);
 
     try {
-      const response = await fetch("https://red-flag-api-ogeb.onrender.com/analyze", {
+      const response = await fetch("https://red-flag-radar.onrender.com/analyze", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -4,9 +4,15 @@ const cors = require("cors");
 const app = express();
 const PORT = 5000;
 
-app.use(cors());
-app.use(express.json());
+// CORS config - update this with your actual frontend Render URL!
+const corsOptions = {
+  origin: "https://red-flag-radar.onrender.com",  // 👈 use your deployed frontend URL
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"],
+};
 
+app.use(cors(corsOptions));
+app.use(express.json());
 
 // Health check
 app.get("/keep-alive", (req, res) => {
@@ -17,8 +23,6 @@ app.get("/keep-alive", (req, res) => {
 app.post("/analyze", (req, res) => {
   console.log("Incoming request:", req.body); 
   const { text, tone } = req.body;
-
-  
 
   if (!text || !tone) {
     return res.status(400).json({ error: "Missing 'text' or 'tone'" });
