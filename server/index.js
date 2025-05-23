@@ -4,9 +4,11 @@ const cors = require("cors");
 const app = express();
 const PORT = 5000;
 
-
 const corsOptions = {
-  origin: "https://red-flag-radar.onrender.com", 
+  origin: [
+    "http://localhost:3000",
+    "https://red-flag-radar.onrender.com"
+  ],
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
 };
