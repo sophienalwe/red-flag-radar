@@ -1,7 +1,7 @@
 # 🚩 Red Flag Radar
 
 **Is it love... or a red flag in disguise?**  
-Red Flag Radar is a fun, AI-lite relationship analyzer that lets users submit questionable messages and get a spicy, honest verdict — ranging from savage roasts to sassy bestie energy.
+Red Flag Radar is a fun, AI-lite relationship analyzer that lets users submit questionable messages and get a spicy, honest verdict, ranging from savage roasts to sassy bestie energy.
 
 ---
 
