@@ -10,7 +10,7 @@ export default function App() {
   const handleSubmit = async (text, tone) => {
     setLoading(true);
     setVerdict(null);
-  
+
     try {
       const response = await fetch("https://red-flag-api-hvgb.onrender.com/analyze", {
         method: "POST",
@@ -19,28 +19,21 @@ export default function App() {
         },
         body: JSON.stringify({ text, tone }),
       });
-  
+
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Server error (${response.status}): ${errorText}`);
       }
-  
+
       const data = await response.json();
-      console.log("API response:", data);
-  
-      if (!data || !data.result) {
-        throw new Error("Invalid response: missing 'result'");
-      }
-  
       setVerdict(data);
     } catch (err) {
       console.error("Error analyzing:", err);
-      alert("Oops! Something went wrong analyzing that. Try again?");
+      alert(`Error: ${err.message}`);
     } finally {
       setLoading(false);
     }
-  };  
-
+  };
   return (
     <div className={`${darkMode ? "dark" : ""}`}>
       <div className="min-h-screen bg-gradient-to-b from-pink-100 via-red-100 to-red-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center px-4 py-8 transition-all duration-500">

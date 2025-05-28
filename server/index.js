@@ -23,29 +23,33 @@ app.get("/keep-alive", (req, res) => {
 
 // Analyze
 app.post("/analyze", (req, res) => {
-  console.log("Incoming request:", req.body); 
   const { text, tone } = req.body;
+  console.log("Incoming request:", req.body); // DEBUG log
 
   if (!text || !tone) {
     return res.status(400).json({ error: "Missing 'text' or 'tone'" });
   }
 
-  let flag = "green";
-  let message = "All good!";
-
+  let result;
+// Match tone to response text — these keywords are used by ResultCard to format output
   if (tone === "savage") {
-    flag = "red";
-    message = `🚩 RUN! Based on what they said: "${text}" 🙃`;
-  } else if (tone === "honest") {
-    flag = "yellow";
-    message = `Hmm... be cautious. "${text}" sounds iffy.`;
-  } else if (tone === "scripture") {
-    flag = "green";
-    message = `Pray about it 🙏🏾. "${text}" might need some discernment.`;
+    result = `red flag: "${text}" gave situationship energy and a ghosting forecast.`;
+  } else if (tone === "serious") {
+    result = `mixed signals: "${text}" feels off — could go either way. You know what you felt.`;
+  } else if (tone === "sassy") {
+    result = `toxic: "${text}"??? girl be fr.`;
+  } else {
+    // fallback tone (if user somehow submits a weird value)
+    result = `green flag: "${text}" might actually be healthy… weird.`;
   }
 
-  res.json({ flag, message });
+  // Log the result before sending it back
+  console.log("Returning result:", result);
+
+  // Send back the structured response so frontend can read it like verdict.result
+  res.json({ result });
 });
+
 
 app.listen(PORT, () => {
   console.log(`✅ Server listening on http://localhost:${PORT}`);
