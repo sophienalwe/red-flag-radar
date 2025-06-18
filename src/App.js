@@ -53,6 +53,16 @@ export default function App() {
           <p className="text-xl italic text-gray-700 dark:text-gray-300 mb-8">
             Is it love... or a <span className="text-red-500">🚩</span> in disguise?
           </p>
+
+          {/* Disclaimer Tooltip */}
+          <div className="relative group inline-block mb-6">
+          <span className="text-sm text-gray-600 dark:text-gray-400 italic underline cursor-pointer">
+            ⚠️ Disclaimer
+          </span>
+          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-72 text-xs text-white bg-gray-800 dark:bg-gray-700 p-3 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+           This tool is for entertainment and reflection — not therapy or serious relationship advice.
+            </div>
+              </div>
   
           <InputForm onSubmit={handleSubmit} />
           {loading && <p className="mt-4 animate-pulse">Analyzing... 🧠</p>}

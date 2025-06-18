@@ -2,7 +2,6 @@
 import React from "react";
 
 export default function ResultCard({ verdict }) {
-  // Final wall of protection
   const safeText = verdict?.result;
 
   if (!safeText || typeof safeText !== "string") {
@@ -18,33 +17,15 @@ export default function ResultCard({ verdict }) {
     );
   }
 
+  // Pull emoji from the result text for extra spice
   const getEmoji = () => {
     const message = safeText.toLowerCase();
     if (message.includes("red flag")) return "🚩";
     if (message.includes("toxic")) return "💀";
     if (message.includes("love") || message.includes("green flag")) return "💖";
-    if (message.includes("mixed signals")) return "⚠️";
+    if (message.includes("mixed signals") || message.includes("mixed")) return "⚠️";
     return "🧐";
   };
-
-  const formatResult = (text) => {
-    const msg = text.toLowerCase();
-  
-    if (msg.includes("red flag")) {
-      return "🚩 RED FLAG ALERT:\nThis situation smells like heartbreak waiting to happen.";
-    }
-    if (msg.includes("toxic")) {
-      return "💀 TOXIC BEHAVIOR DETECTED:\nProtect your peace. Exit the chat.";
-    }
-    if (msg.includes("green flag") || msg.includes("love")) {
-      return "💖 Green Flag:\nOkayy, Proceed with caution... or butterflies.";
-    }
-    if (msg.includes("mixed signals") || msg.includes("mixed")) {
-      return "⚠️ CONFUSION:\nThis one’s dancing between red and green like it's a traffic light.";
-    }
-  
-    return `🧐 Verdict:\n${text}`;
-  };  
 
   return (
     <div className="mt-8 flex justify-center">
@@ -53,7 +34,7 @@ export default function ResultCard({ verdict }) {
           Verdict <span className="animate-bounce">{getEmoji()}</span>
         </h2>
         <p className="text-gray-700 dark:text-gray-300 text-lg text-center whitespace-pre-line leading-relaxed">
-          {formatResult(safeText)}
+          {safeText}
         </p>
       </div>
     </div>
