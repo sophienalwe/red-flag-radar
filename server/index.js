@@ -30,26 +30,73 @@ app.post("/analyze", (req, res) => {
     return res.status(400).json({ error: "Missing 'text' or 'tone'" });
   }
 
-  let result;
-// Match tone to response text — these keywords are used by ResultCard to format output
-  if (tone === "savage") {
-    result = `red flag: "${text}" gave situationship energy and a ghosting forecast.`;
-  } else if (tone === "serious") {
-    result = `mixed signals: "${text}" feels off — could go either way. You know what you felt.`;
-  } else if (tone === "sassy") {
-    result = `toxic: "${text}"??? girl be fr.`;
+  const msg = text.toLowerCase();
+  let result = "";
+
+  const greenFlagWords = [
+    "love", "respect", "boundaries", "emotional intelligence", "therapy", "support", "kids", "values"
+  ];
+
+  const redFlagWords = [
+    "cheat", "steal", "lie", "abuse", "porn", "gaslight", "control", "manipulate", "toxic", "rude", "mean", "fight", "ghost", "crazy", "weird", "onlyfans"
+  ];
+
+  const hasGreenKeyword = greenFlagWords.some(word => msg.includes(word));
+  const hasRedKeyword = redFlagWords.some(word => msg.includes(word));
+
+  const greenFlagResponses = [
+    "💖 Green Flag:\nOkay, this one's actually sweet. Go ahead and smile at your phone like a clown — I won't judge (but I will keep receipts).",
+    "💖 Green Flag:\nWho raised them? Because this is suspiciously healthy.",
+    "💖 Green Flag:\nProceed, bestie. Just don’t plan the wedding yet.",
+    "💖 Green Flag:\nThey listen, respect boundaries, AND text back? Someone check the sky for signs.",
+    "💖 Green Flag:\nOkay fine, fall a little — but wear a helmet."
+  ];
+
+  const redFlagResponses = [
+    "🚩 RED FLAG ALERT:\nThey’re not emotionally unavailable — they’re just not available, period.",
+    "🚩 RED FLAG ALERT:\nIf ‘bare minimum’ was a person, it would be this one.",
+    "🚩 RED FLAG ALERT:\nThey say they don’t believe in titles. Translation: they’re dating 4 people.",
+    "🚩 RED FLAG ALERT:\nThey call their ex 'crazy' but still watch their story every day.",
+    "🚩 RED FLAG ALERT:\nThis person quotes Andrew Tate unironically. Run."
+  ];
+
+  const toxicResponses = [
+    "💀 TOXIC BEHAVIOR DETECTED:\nThat wasn’t a joke — that was a walking lawsuit waiting to happen.",
+    "💀 TOXIC BEHAVIOR DETECTED:\nThey say 'I'm just being honest' and then proceed to be mean.",
+    "💀 TOXIC BEHAVIOR DETECTED:\nThey’ve got podcast opinions and zero emotional regulation. Abort mission.",
+    "💀 TOXIC BEHAVIOR DETECTED:\nThey gaslight better than your oven.",
+    "💀 TOXIC BEHAVIOR DETECTED:\nThey said 'I don't believe in therapy' but absolutely need it."
+  ];
+
+  const mixedSignalResponses = [
+    "⚠️ MIXED SIGNALS:\nThey said 'I miss you' and disappeared for 3 days. That's called data roaming.",
+    "⚠️ MIXED SIGNALS:\nThey flirt at 2am, then ghost by 10am. Classic WiFi crush.",
+    "⚠️ MIXED SIGNALS:\nThey sent you a 'good night' text... and their location is at their ex’s place.",
+    "⚠️ MIXED SIGNALS:\nThey give just enough to keep you interested — not enough to feel secure.",
+    "⚠️ MIXED SIGNALS:\nBreadcrumbing like you're on a trail and they're the forest witch."
+  ];
+
+  //  Step 1: Keyword overrides
+  if (hasGreenKeyword && !hasRedKeyword) {
+    result = greenFlagResponses[Math.floor(Math.random() * greenFlagResponses.length)];
+  } else if (hasRedKeyword) {
+    result = redFlagResponses[Math.floor(Math.random() * redFlagResponses.length)];
   } else {
-    // fallback tone (if user somehow submits a weird value)
-    result = `green flag: "${text}" might actually be healthy… weird.`;
+    //  Step 2: Tone-based fallbacks
+    if (tone === "savage") {
+      result = redFlagResponses[Math.floor(Math.random() * redFlagResponses.length)];
+    } else if (tone === "serious") {
+      result = mixedSignalResponses[Math.floor(Math.random() * mixedSignalResponses.length)];
+    } else if (tone === "sassy") {
+      result = toxicResponses[Math.floor(Math.random() * toxicResponses.length)];
+    } else {
+      result = `🧐 Verdict:\n${text}`;
+    }
   }
 
-  // Log the result before sending it back
   console.log("Returning result:", result);
-
-  // Send back the structured response so frontend can read it like verdict.result
   res.json({ result });
 });
-
 
 app.listen(PORT, () => {
   console.log(`✅ Server listening on http://localhost:${PORT}`);
