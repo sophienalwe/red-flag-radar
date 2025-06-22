@@ -34,26 +34,31 @@ app.post("/analyze", (req, res) => {
   let result = "";
 
   const greenFlagWords = [
-    "love", "respect", "boundaries", "emotional intelligence", "therapy", "support", "kids", "values"
+    "love", "respect", "boundaries", "emotional intelligence", "therapy", "support", "kids", "values", "hozier", "communicate", 
+    "cherish", "prayer", "gentle", "empathy", "soft", "grace", "patient", "appreciate", "Bible", "faithful", "pay", "J Cole", 
+    "Hamilton", "compassion", "comfortable", "self awareness", "growth", "accountability", "reliable"
   ];
 
   const redFlagWords = [
-    "cheat", "steal", "lie", "abuse", "porn", "gaslight", "control", "manipulate", "toxic", "rude", "mean", "fight", "ghost", "crazy", "weird", "onlyfans"
+    "cheat", "steal", "lie", "abuse", "porn", "gaslight", "control", "manipulate", "toxic", "rude", "mean", "fight",
+    "ghost", "crazy", "weird", "onlyfans", "Trump", "sensitive", "insecure", "ego", "threats", "dismissive", "blame",
+    "possessive", "calm down", "You're Mine", "love bombing", "inconsistency", "alienate", "jealousy", "body shame", 
+    "aggressive", "self centered", "ex", "guilt trip", "commitment issues", "conflict avoidance", "mind read"
   ];
 
   const hasGreenKeyword = greenFlagWords.some(word => msg.includes(word));
   const hasRedKeyword = redFlagWords.some(word => msg.includes(word));
 
   const greenFlagResponses = [
-    "💖 Green Flag:\nOkay, this one's actually sweet. Go ahead and smile at your phone like a clown — I won't judge (but I will keep receipts).",
+    "💖 Green Flag:\nOkay, this one's actually sweet. Go ahead and smile at your phone like a clown, I won't judge (but I will keep receipts).",
     "💖 Green Flag:\nWho raised them? Because this is suspiciously healthy.",
     "💖 Green Flag:\nProceed, bestie. Just don’t plan the wedding yet.",
     "💖 Green Flag:\nThey listen, respect boundaries, AND text back? Someone check the sky for signs.",
-    "💖 Green Flag:\nOkay fine, fall a little — but wear a helmet."
+    "💖 Green Flag:\nOkay fine, fall a little, but wear a helmet."
   ];
 
   const redFlagResponses = [
-    "🚩 RED FLAG ALERT:\nThey’re not emotionally unavailable — they’re just not available, period.",
+    "🚩 RED FLAG ALERT:\nThey’re not emotionally unavailable, they’re just not available, period.",
     "🚩 RED FLAG ALERT:\nIf ‘bare minimum’ was a person, it would be this one.",
     "🚩 RED FLAG ALERT:\nThey say they don’t believe in titles. Translation: they’re dating 4 people.",
     "🚩 RED FLAG ALERT:\nThey call their ex 'crazy' but still watch their story every day.",
@@ -61,7 +66,7 @@ app.post("/analyze", (req, res) => {
   ];
 
   const toxicResponses = [
-    "💀 TOXIC BEHAVIOR DETECTED:\nThat wasn’t a joke — that was a walking lawsuit waiting to happen.",
+    "💀 TOXIC BEHAVIOR DETECTED:\nThat wasn’t a joke, that was a walking lawsuit waiting to happen.",
     "💀 TOXIC BEHAVIOR DETECTED:\nThey say 'I'm just being honest' and then proceed to be mean.",
     "💀 TOXIC BEHAVIOR DETECTED:\nThey’ve got podcast opinions and zero emotional regulation. Abort mission.",
     "💀 TOXIC BEHAVIOR DETECTED:\nThey gaslight better than your oven.",
@@ -72,7 +77,7 @@ app.post("/analyze", (req, res) => {
     "⚠️ MIXED SIGNALS:\nThey said 'I miss you' and disappeared for 3 days. That's called data roaming.",
     "⚠️ MIXED SIGNALS:\nThey flirt at 2am, then ghost by 10am. Classic WiFi crush.",
     "⚠️ MIXED SIGNALS:\nThey sent you a 'good night' text... and their location is at their ex’s place.",
-    "⚠️ MIXED SIGNALS:\nThey give just enough to keep you interested — not enough to feel secure.",
+    "⚠️ MIXED SIGNALS:\nThey give just enough to keep you interested, not enough to feel secure.",
     "⚠️ MIXED SIGNALS:\nBreadcrumbing like you're on a trail and they're the forest witch."
   ];
 

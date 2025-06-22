@@ -56,7 +56,7 @@ export default function App() {
 
           {/* Disclaimer Tooltip */}
           <div className="relative group inline-block mb-6">
-          <span className="text-sm text-gray-600 dark:text-gray-400 italic underline cursor-pointer">
+          <span className="text-sm font-semibold text-black-600 dark:text-black-400 cursor-help transition hover:text-black-700 dark:hover:text-black-300">
             ⚠️ Disclaimer
           </span>
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-72 text-xs text-white bg-gray-800 dark:bg-gray-700 p-3 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
