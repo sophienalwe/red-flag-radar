@@ -60,7 +60,7 @@ export default function App() {
             ⚠️ Disclaimer
           </span>
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-72 text-xs text-white bg-gray-800 dark:bg-gray-700 p-3 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-           This tool is for entertainment and reflection — not therapy or serious relationship advice.
+           This tool is for entertainment and reflection, not therapy or serious relationship advice lol. 
             </div>
               </div>
   
